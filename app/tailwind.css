@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+    @apply text-3xl font-bold;
+}
+
+a {
+    @apply text-blue-500 dark:text-blue-300 underline;
+}
+
+input[type="text"], input[type="url"], input[type="email"] {
+    @apply  dark:bg-gray-600 dark:text-white dark:placeholder:text-gray-300;
+}
