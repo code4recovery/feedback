@@ -1,26 +1,22 @@
 import type { MetaFunction } from "@remix-run/node";
 
+import { strings } from "~/i18n";
+
 export const meta: MetaFunction = () => {
   return [
-    { title: "Feedback" },
-    {
-      name: "description",
-      content:
-        "Streamline the process of providing updates on meeting listings.",
-    },
+    { title: strings.title },
+    { name: "description", content: strings.description },
   ];
 };
 
 export default function Index() {
   return (
     <div className="grid gap-5">
-      <h1>Welcome</h1>
+      <h1>{strings.title}</h1>
+      <p>{strings.description}</p>
+      <p className="italic">{strings.disclaimer}</p>
       <p>
-        This site will streamline the process of providing updates on meeting
-        listings.
-      </p>
-      <p>
-        <a href="/start">Get started</a>
+        <a href="/start">{strings.getStarted}</a>
       </p>
     </div>
   );
