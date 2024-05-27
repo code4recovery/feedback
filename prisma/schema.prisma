@@ -18,7 +18,7 @@ model Account {
   name      String   @unique
   slug      String   @unique
   url       String   @unique
-  json      String   @unique
+  feedUrl   String   @unique
   userIDs   String[] @db.ObjectId
   users     User[]   @relation("AccountUsers", fields: [userIDs], references: [id])
   createdAt DateTime @default(now())
@@ -30,7 +30,7 @@ model User {
   email      String    @unique
   emailHash  String
   lastSeen   DateTime?
-  loginToken String?
+  loginToken String
   accountIDs String[]  @db.ObjectId
   accounts   Account[] @relation("AccountUsers", fields: [accountIDs], references: [id])
   createdAt  DateTime  @default(now())

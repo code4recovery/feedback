@@ -5,36 +5,27 @@ import {
   Head,
   Heading,
   Html,
-  Img,
   Preview,
   Section,
   Tailwind,
   Text,
 } from "@react-email/components";
 
-type EmailProps = {
-  buttonLink: string;
-  buttonText: string;
-  footer: string;
-  headline: string;
-  imageHeight: number;
-  imageSrc: string;
-  imageWidth: number;
-  instructions: string;
-  subject: string;
-};
-
 export const Email = ({
   buttonLink,
   buttonText,
   footer,
   headline,
-  imageHeight,
-  imageSrc,
-  imageWidth,
   instructions,
   subject,
-}: EmailProps) => {
+}: {
+  buttonLink: string;
+  buttonText: string;
+  footer?: string;
+  headline: string;
+  instructions: string;
+  subject: string;
+}) => {
   return (
     <Tailwind>
       <Html>
@@ -42,15 +33,6 @@ export const Email = ({
         <Preview>{headline}</Preview>
         <Body className="bg-neutral-100 font-sans mx-auto my-auto py-4 text-center">
           <Container className="bg-white border border-neutral-200 rounded p-5">
-            <Section className="mt-5">
-              <Img
-                alt="Central"
-                className="block mx-auto my-0"
-                height={imageHeight}
-                src={imageSrc}
-                width={imageWidth}
-              />
-            </Section>
             <Heading className="text-neutral-800 text-xl font-bold text-center p-0 my-3 mx-0">
               {subject}
             </Heading>
@@ -65,9 +47,11 @@ export const Email = ({
               </Button>
             </Section>
           </Container>
-          <Container className="px-5">
-            <Text className="text-neutral-500 text-sm">{footer}</Text>
-          </Container>
+          {footer && (
+            <Container className="px-5">
+              <Text className="text-neutral-500 text-sm">{footer}</Text>
+            </Container>
+          )}
         </Body>
       </Html>
     </Tailwind>

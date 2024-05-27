@@ -2,6 +2,17 @@
 
 📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/guides/vite) for details on supported features.
 
+## Environment variables
+
+Create a `.env` file with:
+
+```
+DATABASE_URL="mongodb+srv://mongodb:<password>@<cluster>.<subdomain>.mongodb.net/<database>?retryWrites=true&w=majority"
+SENDGRID_API_KEY="<sendgrid.api.key>"
+SENDGRID_SENDER="<sendgrid.verified.email.address>"
+SESSION_SECRET="<make.up.a.cryptographic.salt>"
+```
+
 ## Development
 
 Run the Vite dev server:
