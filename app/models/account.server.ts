@@ -48,3 +48,10 @@ export async function createAccount({
 
   return new URL(`/${slug}`, request.url).toString();
 }
+
+export async function getAccount(slug: string) {
+  return db.account.findFirstOrThrow({
+    include: { requests: true, users: true },
+    where: { slug },
+  });
+}

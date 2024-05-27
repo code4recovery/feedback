@@ -26,29 +26,30 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { user } = useLoaderData<typeof loader>();
-
   return (
-    <UserContext.Provider value={user}>
-      <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <Meta />
-          <Links />
-        </head>
-        <body className="dark:bg-gray-800 dark:text-white p-5">
-          <div className="max-w-xl mx-auto my-5">{children}</div>
-          <ScrollRestoration />
-          <Scripts />
-        </body>
-      </html>
-    </UserContext.Provider>
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Meta />
+        <Links />
+      </head>
+      <body className="bg-gray-100 dark:bg-gray-800 dark:text-white p-5">
+        <div className="max-w-xl mx-auto my-5">{children}</div>
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
   );
 }
 
 export default function App() {
-  return <Outlet />;
+  const { user } = useLoaderData<typeof loader>();
+  return (
+    <UserContext.Provider value={user}>
+      <Outlet />
+    </UserContext.Provider>
+  );
 }
 
 export function ErrorBoundary() {
@@ -56,19 +57,19 @@ export function ErrorBoundary() {
 
   if (isRouteErrorResponse(error)) {
     return (
-      <>
+      <div className="grid gap-6">
         <h1>
           {error.status} {error.statusText}
         </h1>
         <p>{error.data}</p>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="grid gap-6">
       <h1>Error!</h1>
       <p>{error?.message ?? "Unknown error"}</p>
-    </>
+    </div>
   );
 }
